@@ -19,12 +19,17 @@
     <a href="https://github.com/gtxPrime/creative-video-portfolio/blob/main/LICENSE">
       <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge" alt="License" />
     </a>
+    <a href="https://old.thecoolestportfolio.site/">
+      <img src="https://img.shields.io/badge/Demo-Live_Preview-FF69B4?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" />
+    </a>
     <a href="#">
       <img src="https://img.shields.io/badge/Platform-Web-1f425f?logo=html5&logoColor=white&style=for-the-badge" alt="Platform" />
     </a>
   </p>
 
   <h3>
+    <a href="https://old.thecoolestportfolio.site/" target="_blank">Live Demo</a>
+    <span> | </span>
     <a href="#-about">About</a>
     <span> | </span>
     <a href="#-features">Features</a>
@@ -45,6 +50,8 @@
 This project is a premium, interactive, and fully-responsive single-page/multi-page portfolio website template tailored specifically for **Video Editors, Creative Producers, Motion Designers, and Filmmakers**. It features fluid animations, clean modern layouts, and rich interactive components that showcase high-definition video thumbnails and play links seamlessly.
 
 This portfolio is built to showcase your work in a high-end presentation format and help convert profile visitors into active clients.
+
+🌐 **Live Demo:** [old.thecoolestportfolio.site](https://old.thecoolestportfolio.site/)
 
 ---
 
