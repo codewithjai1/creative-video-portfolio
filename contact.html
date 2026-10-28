@@ -140,8 +140,8 @@
                                 <a class="link-hover d-block" href="tel:+919999999999"
                                     data-hover-text="+91 99999 99999">+91 99999 99999</a>
                             </p>
-                            <p class="links over-hidden"><a class="link-hover" href="mailto:coffeewithgarvit@gmail.com"
-                                    data-hover-text="coffeewithgarvit@gmail.com">coffeewithgarvit@gmail.com</a></p>
+                            <p class="links over-hidden"><a class="link-hover" href="mailto:thriftjai@gmail.com"
+                                    data-hover-text="thriftjai@gmail.com">thriftjai@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="nav-social nav-content mt-30">
@@ -210,8 +210,8 @@
                             <h1 class="title-lg text-upper">CONTACT US</h1>
 
                             <div class="contact-links d-flex flex-column w-50 mt-50">
-                                <a href="mailto:coffeewithgarvit@gmail.com"
-                                    class="sm-title-block text-upper d-flex justify-content-between align-items-center">coffeewithgarvit@gmail.com
+                                <a href="mailto:thriftjai@gmail.com"
+                                    class="sm-title-block text-upper d-flex justify-content-between align-items-center">thriftjai@gmail.com
                                     <span class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                                             <path
@@ -324,8 +324,11 @@
                                         <img class="cover-bg-img" src="assets/img/bg.svg" alt="">
                                     </div>
                                     <div class="dsn-form form-box d-flex flex-column p-relative">
-                                        <form id="contact-form" class="form w-100" method="post" action="contact.php"
+                                        <form id="contact-form" class="form w-100" method="post" action="https://api.web3forms.com/submit"
                                             data-toggle="validator">
+                                            <input type="hidden" name="access_key" value="66f5fd1b-f3d7-4b35-8485-e96f4730ffb8">
+                                            <input type="hidden" name="subject" value="New message from your portfolio">
+                                            <input type="hidden" name="from_name" value="Portfolio Contact Form">
                                             <div class="messages"></div>
                                             <div class="input__wrap controls">
                                                 <div class="d-grid" data-dsn-gap="0px 30px">
@@ -416,7 +419,7 @@
                             <div class="dsn-btn dsn-btn-shape d-flex">
 
                                 <a class="button background-main v-light effect-ajax"
-                                    href="https://mail.google.com/mail/?view=cm&fs=1&to=coffeewithgarvit@gmail.com">
+                                    href="https://mail.google.com/mail/?view=cm&fs=1&to=thriftjai@gmail.com">
                                     <span class="title-btn p-relative  z-index-1 heading-color"
                                         data-animate-text="Let's talk!">
                                         <span>Let's talk!</span>
@@ -440,7 +443,7 @@
                             <div class="d-flex gap-10 justify-content-between flex-wrap">
                                 <div class="info-item">
                                     <h6 class="mb-10">Email Address</h6>
-                                    <a class="text-upper" href="mailto:coffeewithgarvit@gmail.com">coffeewithgarvit@gmail.com</a>
+                                    <a class="text-upper" href="mailto:thriftjai@gmail.com">thriftjai@gmail.com</a>
                                 </div>
 
                                 <div class="info-item">
@@ -502,5 +505,60 @@
     <script src="assets/js/plugins.min.js"></script>
     <script src="assets/js/plugins/dsn-grid.min.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('contact-form');
+        if (!form) return;
+        var box = form.querySelector('.messages');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var keyField = form.querySelector('input[name="access_key"]');
+            if (!keyField || keyField.value === 'PASTE_YOUR_ACCESS_KEY_HERE') {
+                box.textContent = 'Setup needed: paste your Web3Forms access key into the form.';
+                return;
+            }
+
+            var nameV = (form.querySelector('[name="name"]') || {}).value || '';
+            var emailV = (form.querySelector('[name="email"]') || {}).value || '';
+            var msgV = (form.querySelector('[name="message"]') || {}).value || '';
+            if (!nameV.trim() || !emailV.trim() || !msgV.trim()) {
+                box.textContent = 'Please fill in your name, email and message.';
+                return;
+            }
+
+            var btn = form.querySelector('input[type="submit"]');
+            var label = btn.value;
+            btn.value = 'Sending...';
+            btn.disabled = true;
+            box.textContent = '';
+
+            try {
+                var res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+                var data = await res.json();
+                console.log('Web3Forms response:', data);
+
+                if (data.success) {
+                    box.textContent = 'Thanks! Your message has been sent.';
+                    form.reset();
+                } else {
+                    box.textContent = 'Could not send: ' + (data.message || 'unknown error');
+                }
+            } catch (err) {
+                console.error('Web3Forms error:', err);
+                box.textContent = 'Network error. Please try again or email me directly at thriftjai@gmail.com.';
+            }
+
+            btn.value = label;
+            btn.disabled = false;
+        }, true);
+    });
+    </script>
 </body>
 </html>
